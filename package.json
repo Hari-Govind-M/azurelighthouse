@@ -1,0 +1,13 @@
+{
+  "name": "azure-lighthouse-site",
+  "version": "1.0.0",
+  "description": "Azure Lighthouse slide deck",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"No tests specified\""
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
