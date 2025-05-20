@@ -9,6 +9,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Chart.js CDN for lightweight data‑viz -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
     /* Horizontal snap container */
     #slides {
@@ -33,11 +34,23 @@
       -ms-overflow-style: none; /* IE and Edge */
       scrollbar-width: none;   /* Firefox */
     }
+    /* Azure gradient header */
+    .azure-header {
+      background: linear-gradient(90deg, #0078D4, #005A9E);
+    }
+    /* Fade-in animation */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out both;
+    }
   </style>
 </head>
-<body class="bg-slate-50 font-sans text-gray-800 overflow-hidden">
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 font-sans text-gray-800 overflow-hidden">
   <!-- Top bar with Azure / Microsoft logos -->
-  <header class="fixed inset-x-0 top-0 h-14 bg-[#0078D4] flex items-center justify-between px-4 z-10">
+  <header class="fixed inset-x-0 top-0 h-14 azure-header flex items-center justify-between px-4 z-10">
     <div class="flex items-center space-x-2 text-white font-semibold text-lg">
       <img src="https://cdn.worldvectorlogo.com/logos/microsoft-1.svg" alt="Microsoft logo" class="h-6" />
       <span>Azure Lighthouse</span>
@@ -48,7 +61,7 @@
   <!-- Horizontal slide deck -->
   <main id="slides" class="pt-14"> <!-- add top padding equal to header height -->
     <!-- 1. Intro -->
-    <section id="intro" class="slide bg-gradient-to-br from-blue-50 to-blue-100">
+    <section id="intro" class="fade-in-up slide bg-gradient-to-br from-blue-50 to-blue-100">
       <div class="max-w-4xl mx-auto p-8">
         <h1 class="text-4xl font-bold mb-4 text-[#005A9E]">Azure Lighthouse: Cross‑Tenant Management at Scale</h1>
         <p class="text-lg leading-relaxed mb-6">
@@ -59,7 +72,7 @@
     </section>
 
     <!-- 2. Traditional Multi‑Tenant Management -->
-    <section id="traditional" class="slide bg-white">
+    <section id="traditional" class="fade-in-up slide bg-white">
       <div class="prose prose-slate max-w-4xl mx-auto p-8">
         <h2>Traditional Multi‑Tenant Management (Before Azure Lighthouse)</h2>
         <p><strong>Member Accounts in Customer Tenants:</strong> Service providers or admins often needed separate user accounts in each customer’s Azure AD (Entra ID) tenant. This meant managing multiple credentials and identities, increasing security risks and administrative overhead.</p>
@@ -70,7 +83,7 @@
     </section>
 
     <!-- 3. What is Azure Lighthouse? -->
-    <section id="what-is" class="slide bg-gradient-to-br from-cyan-50 to-blue-50">
+    <section id="what-is" class="fade-in-up slide bg-gradient-to-br from-cyan-50 to-blue-50">
       <div class="prose prose-slate max-w-4xl mx-auto p-8">
         <h2>What is Azure Lighthouse?</h2>
         <p>Azure Lighthouse is Azure’s solution for secure cross‑tenant management. It allows a managing organization (such as an MSP or a multi‑tenant enterprise IT) to operate on resources in other Azure tenants from within their own tenant, using a concept called <em>Azure Delegated Resource Management</em>.</p>
@@ -84,36 +97,37 @@
     </section>
 
     <!-- 4. Architecture & Delegation Flow -->
-    <section id="architecture" class="slide bg-white">
+    <section id="architecture" class="fade-in-up slide bg-white">
       <div class="prose prose-slate max-w-4xl mx-auto p-8">
         <h2>Azure Lighthouse Architecture and Delegation Flow</h2>
         <p><strong>Architecture:</strong> Azure Lighthouse uses Azure Delegated Resource Management to project resources from customer tenants into a service provider’s tenant. In this diagram, the service provider tenant has Azure AD identities that are granted roles on resources in multiple customer tenants …</p>
+        <img src="https://learn.microsoft.com/en-us/azure/lighthouse/media/overview/azure-lighthouse-architecture.svg" alt="Delegation flow diagram" class="w-full my-4 rounded-lg shadow" />
         <!-- Full text continues -->
         <p><em>(Full architecture explanation included — scroll within the slide to read.)</em></p>
       </div>
     </section>
 
     <!-- 5. Key Benefits (with animated chips) -->
-    <section id="benefits" class="slide bg-gradient-to-br from-blue-50 to-indigo-50">
+    <section id="benefits" class="fade-in-up slide bg-gradient-to-br from-blue-50 to-indigo-50">
       <div class="prose prose-slate max-w-4xl mx-auto p-8">
         <h2>Key Benefits of Azure Lighthouse</h2>
         <ul class="space-y-2">
-          <li class="p-2 bg-white/80 rounded-lg shadow">Centralized Management at Scale</li>
-          <li class="p-2 bg-white/80 rounded-lg shadow">No More Multiple Identities</li>
-          <li class="p-2 bg-white/80 rounded-lg shadow">Granular RBAC and Least Privilege</li>
-          <li class="p-2 bg-white/80 rounded-lg shadow">Transparency and Auditing</li>
-          <li class="p-2 bg-white/80 rounded-lg shadow">Scalability and Automation</li>
-          <li class="p-2 bg-white/80 rounded-lg shadow">Multi‑Cloud/Hybrid Support via Azure Arc</li>
-          <li class="p-2 bg-white/80 rounded-lg shadow">Integration with Azure Services</li>
-          <li class="p-2 bg-white/80 rounded-lg shadow">No Additional Cost</li>
-          <li class="p-2 bg-white/80 rounded-lg shadow">Enhanced Security Posture</li>
-          <li class="p-2 bg-white/80 rounded-lg shadow">Customer Trust and Control</li>
+          <li class="p-2 bg-white/80 rounded-lg shadow"><i class="fa-solid fa-check-circle text-[#0078D4] mr-2"></i> Centralized Management at Scale</li>
+          <li class="p-2 bg-white/80 rounded-lg shadow"><i class="fa-solid fa-check-circle text-[#0078D4] mr-2"></i> No More Multiple Identities</li>
+          <li class="p-2 bg-white/80 rounded-lg shadow"><i class="fa-solid fa-check-circle text-[#0078D4] mr-2"></i> Granular RBAC and Least Privilege</li>
+          <li class="p-2 bg-white/80 rounded-lg shadow"><i class="fa-solid fa-check-circle text-[#0078D4] mr-2"></i> Transparency and Auditing</li>
+          <li class="p-2 bg-white/80 rounded-lg shadow"><i class="fa-solid fa-check-circle text-[#0078D4] mr-2"></i> Scalability and Automation</li>
+          <li class="p-2 bg-white/80 rounded-lg shadow"><i class="fa-solid fa-check-circle text-[#0078D4] mr-2"></i> Multi‑Cloud/Hybrid Support via Azure Arc</li>
+          <li class="p-2 bg-white/80 rounded-lg shadow"><i class="fa-solid fa-check-circle text-[#0078D4] mr-2"></i> Integration with Azure Services</li>
+          <li class="p-2 bg-white/80 rounded-lg shadow"><i class="fa-solid fa-check-circle text-[#0078D4] mr-2"></i> No Additional Cost</li>
+          <li class="p-2 bg-white/80 rounded-lg shadow"><i class="fa-solid fa-check-circle text-[#0078D4] mr-2"></i> Enhanced Security Posture</li>
+          <li class="p-2 bg-white/80 rounded-lg shadow"><i class="fa-solid fa-check-circle text-[#0078D4] mr-2"></i> Customer Trust and Control</li>
         </ul>
       </div>
     </section>
 
     <!-- 6. Technical Implementation -->
-    <section id="implementation" class="slide bg-white">
+    <section id="implementation" class="fade-in-up slide bg-white">
       <div class="prose prose-slate max-w-4xl mx-auto p-8">
         <h2>Technical Implementation – How Azure Lighthouse Works</h2>
         <p><!-- Full technical implementation text here … --></p>
@@ -121,7 +135,7 @@
     </section>
 
     <!-- 7. Use Cases -->
-    <section id="use-cases" class="slide bg-gradient-to-br from-cyan-50 to-emerald-50">
+    <section id="use-cases" class="fade-in-up slide bg-gradient-to-br from-cyan-50 to-emerald-50">
       <div class="prose prose-slate max-w-4xl mx-auto p-8">
         <h2>Real‑World Usage Scenarios</h2>
         <p><!-- Full text of usage scenarios here … --></p>
@@ -129,7 +143,7 @@
     </section>
 
     <!-- 8. Best Practices -->
-    <section id="best-practices" class="slide bg-white">
+    <section id="best-practices" class="fade-in-up slide bg-white">
       <div class="prose prose-slate max-w-4xl mx-auto p-8">
         <h2>Best Practices for Azure Lighthouse Deployment</h2>
         <p><!-- Full text of best practices … --></p>
@@ -137,7 +151,7 @@
     </section>
 
     <!-- 9. Limitations & Considerations -->
-    <section id="limitations" class="slide bg-gradient-to-br from-orange-50 to-red-50">
+    <section id="limitations" class="fade-in-up slide bg-gradient-to-br from-orange-50 to-red-50">
       <div class="prose prose-slate max-w-4xl mx-auto p-8">
         <h2>Limitations and Considerations</h2>
         <p><!-- Full limitations text … --></p>
@@ -145,7 +159,7 @@
     </section>
 
     <!-- 10. Recap & Setup Steps -->
-    <section id="recap" class="slide bg-white">
+    <section id="recap" class="fade-in-up slide bg-white">
       <div class="prose prose-slate max-w-4xl mx-auto p-8">
         <h2>Recap – Azure Lighthouse Benefits & Setup Steps</h2>
         <p><!-- Full recap text … --></p>
@@ -155,9 +169,9 @@
 
   <!-- Mobile nav dots + Prev/Next buttons -->
   <div class="fixed bottom-4 inset-x-0 flex items-center justify-center space-x-4 z-10">
-    <button id="prevBtn" class="bg-[#0078D4] text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover:bg-[#005A9E]" aria-label="Previous slide">◀</button>
+    <button id="prevBtn" class="bg-[#0078D4] text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover:bg-[#005A9E]" aria-label="Previous slide"><i class="fa-solid fa-angle-left"></i></button>
     <div id="dots" class="flex space-x-2"></div>
-    <button id="nextBtn" class="bg-[#0078D4] text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover:bg-[#005A9E]" aria-label="Next slide">▶</button>
+    <button id="nextBtn" class="bg-[#0078D4] text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover:bg-[#005A9E]" aria-label="Next slide"><i class="fa-solid fa-angle-right"></i></button>
   </div>
 
   <script>
